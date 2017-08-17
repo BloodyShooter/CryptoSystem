@@ -73,9 +73,11 @@ public class FileManagerController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("password") String password, HttpServletResponse response, ModelMap model) {
+    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("password") String password, @RequestParam("archArch") String arch, HttpServletResponse response, ModelMap model) {
 
         String name = null;
+
+        System.out.println(arch);
 
         if (!file.isEmpty()) {
             try {
@@ -107,15 +109,7 @@ public class FileManagerController {
 
                 model.addAttribute("name", name);
                 model.addAttribute("newFile", newFile);
-                model.addAttribute("bytes.length", bytes.length);
-
-//                return "<html><head>\n" +
-//                        "  <meta charset=\"utf-8\"></head><body>" +
-//                        "<h1>Удача " + name + "</h1><br>" + "" +
-//                        "<a href=\"/download?nameFile=" + newFile + "\">download file " + newFile + "</a><br>" +
-//                        "<h1>" + bytes.length + "</h1>" +
-//                        "</body>" +
-//                        "</html>";
+                model.addAttribute("bytes", bytes.length);
                 return "downloadFile";
             } catch (Exception e) {
                 return "Неудача " + name + " -> " + e.getMessage();

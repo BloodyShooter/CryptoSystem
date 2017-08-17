@@ -13,6 +13,6 @@
 <body>
 <h1>Удача ${name}</h1><br>
 <a href="/download?nameFile=${newFile}">download file ${newFile} </a><br>
-<h1>bytes.length</h1>
+<h1>${bytes}</h1>
 </body>
 </html>
