@@ -55,7 +55,7 @@
 							<div class="form-group col-md-12">
 								<label class="col-md-3 control-lable">Пароль</label>
 								<div class="col-md-7">
-									<input type="password" name="password" class="form-control input-sm"/>
+									<input type="password" name="password" class="form-control input-sm" />
 								</div>
 							</div>
 						</div>

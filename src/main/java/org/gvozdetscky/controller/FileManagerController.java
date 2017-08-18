@@ -39,8 +39,6 @@ public class FileManagerController {
         request.setCharacterEncoding("UTF-8");
         File downloadFile = new File(PATH + nameFile);
 
-        System.out.println("Стадия 1");
-
         FileInputStream fis = new FileInputStream(downloadFile);
 
         response.setContentType("application/octet-stream");
@@ -60,7 +58,7 @@ public class FileManagerController {
             outputStream.write(buffer, 0, bytesRead);
         }
 
-        System.out.println("Стадия 2");
+        System.out.println("Файл был скачен");
 
         fis.close();
         outputStream.close();
@@ -73,11 +71,9 @@ public class FileManagerController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("password") String password, @RequestParam("archArch") String arch, HttpServletResponse response, ModelMap model) {
+    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("password") String password, HttpServletResponse response, ModelMap model) {
 
         String name = null;
-
-        System.out.println(arch);
 
         if (!file.isEmpty()) {
             try {
