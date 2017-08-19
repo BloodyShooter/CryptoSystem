@@ -17,31 +17,47 @@
     <title>CryptoSystem</title>
 </head>
 <body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CryptoSystem</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/downloadJar">Download</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="generic-container">
     <div class="container">
 
         <div class="panel panel-default">
             <div class="panel-heading">
 					<span class="lead">
-						<h1>Удача ${name}</h1>
+						<h1>Загрузите Jar и пользуйтесь везде.</h1>
 					</span>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    Вы можете загрузить файл -> <a href="/download?nameFile=${newFile}">${newFile} </a>
+                    Вы можете загрузить файл -> <a href="/download?nameFile=jar/OFB.jar">OFB.jar</a>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h1>Размер текущего файла ${bytes} байт.</h1>
+                    <h1>Для запуска jar файла, нужно установленая JVM.</h1>
                 </div>
             </div>
         </div>
-        <div class="well">
-            Вернуться <a href="/">Home</a>
-        </div>
     </div>
-
+    <!-- /.container -->
 </div>
+
+<script type="text/javascript"
+        src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

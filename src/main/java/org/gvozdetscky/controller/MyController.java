@@ -13,4 +13,9 @@ public class MyController {
     public String showHello() {
         return "welcome";
     }
+
+    @RequestMapping(value = "/downloadJar")
+    public String showDownloadJar() {
+        return "downloadJar";
+    }
 }

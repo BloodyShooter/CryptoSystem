@@ -34,9 +34,8 @@ public class FileManagerController {
     }
 
     @RequestMapping(value = "/download")
-    public void downloadFile(@RequestParam(value = "nameFile") String nameFile, HttpServletResponse response, HttpServletRequest request) throws IOException {
-
-        request.setCharacterEncoding("UTF-8");
+    public void downloadFile(@RequestParam(value = "nameFile") String nameFile,
+                             HttpServletResponse response) throws IOException {
         File downloadFile = new File(PATH + nameFile);
 
         FileInputStream fis = new FileInputStream(downloadFile);
