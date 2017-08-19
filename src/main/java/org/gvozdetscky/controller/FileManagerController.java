@@ -1,7 +1,7 @@
 package org.gvozdetscky.controller;
 
-import org.gvozdetscky.logic.CryptographerOFB;
 import org.gvozdetscky.service.CryptServiceImpl;
+import org.gvozdetscky.service.FileServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
@@ -23,10 +21,13 @@ import java.io.*;
 @Controller
 public class FileManagerController {
 
-    private static final String PATH = "D:\\temp\\";
+    private static final String PATH = "D:/temp/";
 
     @Autowired
     private CryptServiceImpl cryptService;
+
+    @Autowired
+    private FileServiceImpl fileService;
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.GET)
     public @ResponseBody String uploadFileInfo() {
@@ -72,55 +73,34 @@ public class FileManagerController {
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String uploadFile(@RequestParam("file") MultipartFile file,
                              @RequestParam("password") String password,
-                             HttpServletResponse response, ModelMap model) {
+                             ModelMap model) {
 
-        String name = null;
+        String name = "";
 
         if (!file.isEmpty()) {
             try {
 
-                byte[] bytes = file.getBytes();
-
-                name = file.getOriginalFilename();
-
-                File dir = new File("D:\\temp");
-
-                if (!dir.exists()) {
-                    dir.mkdir();
-                }
-
-                File uploadedFile = new File(dir.getAbsolutePath() + File.separator + name);
-
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(uploadedFile));
-                stream.write(bytes);
-                stream.flush();
-                stream.close();
+                name = fileService.saveFileOnServer(file);
 
                 String newFile;
 
                 if (!password.equals("")) {
-                    newFile = cryptService.encrypt(uploadedFile.getAbsolutePath(), password, false, false);
+                    newFile = cryptService.encrypt(PATH + name,
+                            password,
+                            false,
+                            false);
                 } else {
-                    newFile = cryptService.encrypt(uploadedFile.getAbsolutePath(), null, false, false);
+                    newFile = cryptService.encrypt(PATH + name,
+                            null,
+                            false,
+                            false);
                 }
+
+                newFile = newFile.substring(newFile.lastIndexOf("/") + 1, newFile.length());
 
                 System.out.println(newFile);
 
-                newFile = newFile.substring(newFile.lastIndexOf("\\") + 1, newFile.length());
-
-                System.out.println(newFile);
-
-                model.addAttribute("name", name);
-                model.addAttribute("newFile", newFile);
-                model.addAttribute("bytes", bytes.length);
-
-                if (!password.equals("")) {
-                    model.addAttribute("password", true);
-                } else {
-                    model.addAttribute("password", false);
-                    model.addAttribute("fileKey", "key");
-                    System.out.println("Пароля нет");
-                }
+                setModelMap(file, password, model, name, newFile);
 
                 return "downloadFile";
             } catch (Exception e) {
@@ -128,6 +108,65 @@ public class FileManagerController {
             }
         } else {
             return "Неудача";
+        }
+    }
+
+    @RequestMapping(value = "/decryptFile", method = RequestMethod.POST)
+    public String decryptFile(@RequestParam("file") MultipartFile file,
+                             @RequestParam("password") String password,
+                             ModelMap model) {
+
+        String name = "";
+
+        if (!file.isEmpty()) {
+            try {
+
+                name = fileService.saveFileOnServer(file);
+
+                String newFile;
+
+                if (!password.equals("")) {
+                    newFile = cryptService.decrypt(PATH + name,
+                            password,
+                            false,
+                            false);
+                } else {
+                    newFile = cryptService.decrypt(PATH + name,
+                            null,
+                            false,
+                            false);
+                }
+
+                System.out.println(newFile);
+
+                newFile = newFile.substring(newFile.lastIndexOf("/") + 1, newFile.length());
+
+                System.out.println(newFile);
+
+                setModelMap(file, password, model, name, newFile);
+
+                return "downloadFile";
+            } catch (Exception e) {
+                return "Неудача " + name + " -> " + e.getMessage();
+            }
+        } else {
+            return "Неудача";
+        }
+    }
+
+    private void setModelMap(@RequestParam("file") MultipartFile file,
+                             @RequestParam("password") String password,
+                             ModelMap model, String name,
+                             String newFile) throws IOException {
+        model.addAttribute("name", name);
+        model.addAttribute("newFile", newFile);
+        model.addAttribute("bytes", file.getBytes().length);
+
+        if (!password.equals("")) {
+            model.addAttribute("password", true);
+        } else {
+            model.addAttribute("password", false);
+            model.addAttribute("fileKey", "key");
         }
     }
 }

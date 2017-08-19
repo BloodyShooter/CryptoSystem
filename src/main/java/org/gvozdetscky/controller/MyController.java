@@ -4,18 +4,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Created by Egor on 10.08.2017.
+ * Класс где перенаправляют на страницы.
  */
 @Controller
 public class MyController {
 
     @RequestMapping(value = "/")
-    public String showHello() {
+    public String showWelcomePage() {
         return "welcome";
     }
 
     @RequestMapping(value = "/downloadJar")
-    public String showDownloadJar() {
+    public String showDownloadJarPage() {
         return "downloadJar";
+    }
+
+    @RequestMapping(value = "/decrypt")
+    public String showDecryptPagePage() {
+        return "decrypt";
     }
 }

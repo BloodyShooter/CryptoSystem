@@ -26,7 +26,7 @@
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="/">Encrypt</a></li>
-					<li><a href="#">Decrypt</a></li>
+					<li><a href="/decrypt">Decrypt</a></li>
 					<li><a href="/downloadJar">Download</a></li>
 				</ul>
 			</div>
@@ -39,7 +39,7 @@
 				<div class="panel-heading">
 					<span class="lead">
 						<h1>Hi</h1>
-						<h2><P>This is application for encrypt/decrypt files.</P></h2>
+						<h2><P>This is Page for encrypt files.</P></h2>
 					</span>
 				</div>
 				<div class="uploadcontainer">
@@ -61,7 +61,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="alert alert-info">
+							<div class="alert alert-info myinfo">
 								<strong>Info!</strong> Если поле "Пароль" будет пустым то используется случайно сгенерированный пароль.
 							</div>
 						</div>

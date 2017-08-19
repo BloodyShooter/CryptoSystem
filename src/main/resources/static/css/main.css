@@ -7,6 +7,10 @@ h2{
 	size: 12px;
 }
 
+.myinfo{
+	margin: 20px;
+}
+
 .uploadcontainer{
 	background-color: bisque;
 	padding: 20px;

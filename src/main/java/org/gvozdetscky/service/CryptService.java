@@ -10,5 +10,5 @@ public interface CryptService {
                    boolean isStatusArch, boolean isStatusBase64) throws FileNotFoundException;
 
     String decrypt(String pathFile, String password,
-                   boolean isStatusArch, boolean isStatusBase64);
+                   boolean isStatusArch, boolean isStatusBase64) throws FileNotFoundException;
 }

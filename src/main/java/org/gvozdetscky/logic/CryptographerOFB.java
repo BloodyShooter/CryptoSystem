@@ -134,6 +134,8 @@ public class CryptographerOFB {
 
         String s = file.getName().substring(0, file.getName().lastIndexOf("."));
 
+        nameFile = s;
+
         try (FileOutputStream writer = new FileOutputStream(file.getParent() + "\\" + s);
              FileInputStream reader = new FileInputStream(pathFile)) {
             if (password != null) {

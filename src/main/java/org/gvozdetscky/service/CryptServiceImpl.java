@@ -15,16 +15,16 @@ import java.io.FileOutputStream;
 public class CryptServiceImpl implements CryptService {
 
     public String decrypt(String pathFile, String password,
-                          boolean isStatusArch, boolean isStatusBase64) {
-        return "decrypt";
+                          boolean isStatusArch, boolean isStatusBase64) throws FileNotFoundException {
+        CryptographerOFB cryptographerOFB = new CryptographerOFB();
+
+        return cryptographerOFB.decrypt(pathFile, password, false, false);
     }
 
     public String encrypt(String pathFile, String password,
                           boolean isStatusArch, boolean isStatusBase64) throws FileNotFoundException {
         CryptographerOFB cryptographerOFB = new CryptographerOFB();
 
-        String newFile = cryptographerOFB.encrypt(pathFile, password, false, false);
-
-        return newFile;
+        return cryptographerOFB.encrypt(pathFile, password, false, false);
     }
 }
