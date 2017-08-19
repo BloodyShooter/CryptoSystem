@@ -17,6 +17,20 @@
     <title>CryptoSystem</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">CryptoSystem</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/encrypt">Encrypt</a></li>
+                <li><a href="/decrypt">Decrypt</a></li>
+                <li><a href="/downloadJar">Download</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="generic-container">
     <div class="container">
 
@@ -43,9 +57,6 @@
                     <h2>Размер текущего файла ${bytes} байт.</h2>
                 </div>
             </div>
-        </div>
-        <div class="well">
-            Вернуться <a href="/">Encrypt</a>
         </div>
     </div>
 

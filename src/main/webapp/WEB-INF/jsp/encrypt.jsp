@@ -25,8 +25,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/encrypt">Encrypt</a></li>
-                <li class="active"><a href="/decrypt">Decrypt</a></li>
+                <li class="active"><a href="/encrypt">Encrypt</a></li>
+                <li><a href="/decrypt">Decrypt</a></li>
                 <li><a href="/downloadJar">Download</a></li>
             </ul>
         </div>
@@ -39,11 +39,11 @@
             <div class="panel-heading">
 					<span class="lead">
 						<h1>Hi</h1>
-						<h2><P>This is Page for decrypt files.</P></h2>
+						<h2><P>This is Page for encrypt files.</P></h2>
 					</span>
             </div>
-            <div class="uploadcontainerfordecrypt">
-                <form method="post" action="decryptFile" enctype="multipart/form-data">
+            <div class="uploadcontainer">
+                <form method="post" action="upload" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">File to upload:</label>
@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-actions floatRightForDecrypt">
+                        <div class="form-actions floatRight">
                             <input type="submit" value="Погнали" class="btn btn-primary btn-sm">
                         </div>
                     </div>
@@ -106,3 +106,4 @@
 </body>
 
 </html>
+

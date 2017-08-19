@@ -16,6 +16,11 @@ h2{
 	padding: 20px;
 }
 
+.uploadcontainerfordecrypt{
+	background-color: mediumspringgreen;
+	padding: 20px;
+}
+
 .generic-container {
 	width:90%;
 	margin-left: 20px;
@@ -31,4 +36,10 @@ h2{
 .floatRight{
 	float:right;
 	margin-right: 18px;
+}
+
+.floatRightForDecrypt{
+	float:right;
+	margin-right: 18px;
+	color: #EAE7E7;
 }

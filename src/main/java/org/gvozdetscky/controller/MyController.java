@@ -23,4 +23,9 @@ public class MyController {
     public String showDecryptPagePage() {
         return "decrypt";
     }
+
+    @RequestMapping(value = "/encrypt")
+    public String showEncryptPagePage() {
+        return "encrypt";
+    }
 }
