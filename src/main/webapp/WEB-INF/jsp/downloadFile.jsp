@@ -31,14 +31,21 @@
                     Вы можете загрузить файл -> <a href="/download?nameFile=${newFile}">${newFile} </a>
                 </div>
             </div>
+            <c:if test="${password=='false'}">
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        Вы можете загрузить пароль -> <a href="/download?nameFile=${fileKey}">${fileKey} </a>
+                    </div>
+                </div>
+            </c:if>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h1>Размер текущего файла ${bytes} байт.</h1>
+                    <h2>Размер текущего файла ${bytes} байт.</h2>
                 </div>
             </div>
         </div>
         <div class="well">
-            Вернуться <a href="/">Home</a>
+            Вернуться <a href="/">Encrypt</a>
         </div>
     </div>
 

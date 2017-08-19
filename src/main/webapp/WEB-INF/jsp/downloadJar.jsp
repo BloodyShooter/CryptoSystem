@@ -25,7 +25,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li><a href="/">Encript</a></li>
+                <li><a href="#">Decrypt</a></li>
                 <li class="active"><a href="/downloadJar">Download</a></li>
             </ul>
         </div>
@@ -47,7 +48,9 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-12">
-                    <h1>Для запуска jar файла, нужно установленая JVM.</h1>
+                    <div class="alert alert-info">
+                        <strong>Info!</strong> Для запуска jar файла, нужно установленая JVM.
+                    </div>
                 </div>
             </div>
         </div>

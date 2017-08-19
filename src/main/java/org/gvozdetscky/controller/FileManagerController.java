@@ -70,7 +70,9 @@ public class FileManagerController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("password") String password, HttpServletResponse response, ModelMap model) {
+    public String uploadFile(@RequestParam("file") MultipartFile file,
+                             @RequestParam("password") String password,
+                             HttpServletResponse response, ModelMap model) {
 
         String name = null;
 
@@ -94,7 +96,13 @@ public class FileManagerController {
                 stream.flush();
                 stream.close();
 
-                String newFile = cryptService.encrypt(uploadedFile.getAbsolutePath(), password, false, false);
+                String newFile;
+
+                if (!password.equals("")) {
+                    newFile = cryptService.encrypt(uploadedFile.getAbsolutePath(), password, false, false);
+                } else {
+                    newFile = cryptService.encrypt(uploadedFile.getAbsolutePath(), null, false, false);
+                }
 
                 System.out.println(newFile);
 
@@ -105,6 +113,15 @@ public class FileManagerController {
                 model.addAttribute("name", name);
                 model.addAttribute("newFile", newFile);
                 model.addAttribute("bytes", bytes.length);
+
+                if (!password.equals("")) {
+                    model.addAttribute("password", true);
+                } else {
+                    model.addAttribute("password", false);
+                    model.addAttribute("fileKey", "key");
+                    System.out.println("Пароля нет");
+                }
+
                 return "downloadFile";
             } catch (Exception e) {
                 return "Неудача " + name + " -> " + e.getMessage();
