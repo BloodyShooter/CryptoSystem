@@ -43,7 +43,7 @@
 					</span>
             </div>
             <div class="uploadcontainer">
-                <form method="post" action="upload" enctype="multipart/form-data">
+                <form method="post" action="encryptFile" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-12">
                             <label class="col-md-3 control-lable">File to upload:</label>

@@ -28,4 +28,9 @@ public class MyController {
     public String showEncryptPagePage() {
         return "encrypt";
     }
+
+    @RequestMapping(value = "/old")
+    public String showOldEncryptPagePage() {
+        return "oldEncrypt";
+    }
 }
