@@ -43,3 +43,10 @@ h2{
 	margin-right: 18px;
 	color: #EAE7E7;
 }
+
+.center{
+	text-align: center;
+	background: black;
+	margin-right: 2%;
+	margin-left: 2%;
+}
